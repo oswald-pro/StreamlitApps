@@ -1,12 +1,14 @@
-import pandas as pd
 import streamlit as st
+import HomePage
 
 # DB Management
 import sqlite3
 
+
 conn = sqlite3.connect('system.db')
 c = conn.cursor()
 
+global email
 
 def create_usertable():
     c.execute('CREATE TABLE IF NOT EXISTS userstable(email TEXT,password TEXT,country TEXT)')
@@ -18,6 +20,7 @@ def add_userdata(email, password, country):
 
 
 def login_user(email, password):
+
     c.execute('SELECT * FROM userstable WHERE email =? AND password = ?', (email, password))
     data = c.fetchall()
     return data
@@ -32,12 +35,10 @@ def view_all_users():
 def main():
     st.title("Login App")
 
-    menu = ["Home", "Login", "SignUp"]
+    menu = ["Login", "SignUp"]
     choice = st.sidebar.selectbox("Menu", menu)
 
-    if choice == "Home":
-        st.subheader("Home")
-    elif choice == "Login":
+    if choice == "Login":
         st.subheader("Login Section")
 
         email = st.text_input("Email")
@@ -48,14 +49,7 @@ def main():
             result = login_user(email, password)
             if result:
                 st.success("Logged In with {}".format(email))
-                task = st.selectbox("Task", ["Videos", "Profile"])
-                if task == "Videos":
-                    st.subheader("Watch Youtube Videos")
-                elif task == "Profile":
-                    st.subheader("Your Profile")
-                    user_result = view_all_users()
-                    clean_db = pd.DataFrame(user_result, columns=["Email", "Password", "Country"])
-                    st.dataframe(clean_db)
+                HomePage.home()
         else:
             st.warning("Incorrect Username/Password")
 
