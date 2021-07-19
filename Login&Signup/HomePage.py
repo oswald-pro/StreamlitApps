@@ -1,6 +1,7 @@
 import streamlit as st
-import LoginSignup as ls
+import app as ap
 import pandas as pd
+
 
 def home():
     st.subheader("Home")
@@ -9,6 +10,6 @@ def home():
         st.subheader("Watch Youtube Videos")
     elif task == "Profile":
         st.subheader("Your Profile")
-        user_result = ls.view_all_users()
+        user_result = ap.view_all_users()
         clean_db = pd.DataFrame(user_result, columns=["Email", "Password", "Country"])
         st.dataframe(clean_db)
