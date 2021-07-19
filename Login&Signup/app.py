@@ -68,7 +68,14 @@ def main():
             st.success("You have successfully created an account")
             st.info("Go to Login Menu to login")
 
+def  maintainance():
+    st.title("""
+       🛠 WE ARE CURRENTLY WORKING 👨‍💻!
+       
+       WE WILL GET BACK TO YOU SHORTY
+       """)
 
 if __name__ == '__main__':
-    main()
+    #main()
+    maintainance()
 
