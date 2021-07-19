@@ -4,8 +4,8 @@ import pandas as pd
 
 
 def home():
-    st.subheader("Home")
-    task = st.selectbox("Task", ["Videos", "Profile"])
+    st.subheader("Home Page")
+    task = st.sidebar.selectbox("Select", ["Videos", "Profile"])
     if task == "Videos":
         st.subheader("Watch Youtube Videos")
     elif task == "Profile":

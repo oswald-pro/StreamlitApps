@@ -39,7 +39,7 @@ def main():
     choice = st.sidebar.selectbox("Menu", menu)
 
     if choice == "Login":
-        st.subheader("Login Section")
+        st.subheader("Welcome Back!")
 
         email = st.text_input("Email")
         password = st.text_input("Password", type='password')
